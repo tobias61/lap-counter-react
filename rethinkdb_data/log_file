@@ -1,0 +1,39 @@
+2017-07-29T17:35:14.621170000 0.377151s notice: Recursively removing directory /Developer/Projects/lap-counter/lap-counter-react/rethinkdb_data/tmp
+2017-07-29T17:35:14.653529000 0.409515s notice: Initializing directory /Developer/Projects/lap-counter/lap-counter-react/rethinkdb_data
+2017-07-29T17:35:14.653648000 0.409628s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/Developer/Projects/lap-counter/lap-counter-react/rethinkdb_data' did not already exist or is empty.)
+2017-07-29T17:35:14.653677000 0.409656s notice: Running rethinkdb 2.3.5 (CLANG 8.0.0 (clang-800.0.38))...
+2017-07-29T17:35:14.676037000 0.432018s notice: Running on Darwin 16.6.0 x86_64
+2017-07-29T17:35:14.676099000 0.432079s notice: Loading data from directory /Developer/Projects/lap-counter/lap-counter-react/rethinkdb_data
+2017-07-29T17:35:15.273013000 1.028993s info: Automatically using cache size of 1852 MB
+2017-07-29T17:35:15.274257000 1.030237s notice: Listening for intracluster connections on port 29015
+2017-07-29T17:35:15.277243000 1.033224s notice: Listening for client driver connections on port 28015
+2017-07-29T17:35:15.277432000 1.033412s notice: Listening for administrative HTTP connections on port 8080
+2017-07-29T17:35:15.277437000 1.033416s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2017-07-29T17:35:15.277443000 1.033422s notice: Listening on driver addresses: 127.0.0.1, ::1
+2017-07-29T17:35:15.277445000 1.033424s notice: Listening on http addresses: 127.0.0.1, ::1
+2017-07-29T17:35:15.277450000 1.033429s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-07-29T17:35:15.277455000 1.033434s notice: Server ready, "Tonis_iMac_122_fritz_box_0ql" 5e2be500-8ee3-4d49-b486-6f28c985fc32
+2017-07-29T17:35:16.236778000 1.992741s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-07-29T17:35:21.786177000 7.542088s notice: Server got SIGINT from pid 3252, uid 501; shutting down...
+2017-07-29T17:35:21.786312000 7.542223s notice: Shutting down client connections...
+2017-07-29T17:35:21.786419000 7.542330s notice: All client connections closed.
+2017-07-29T17:35:21.786425000 7.542336s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2017-07-29T17:35:21.821281000 7.577193s notice: Storage engine shut down.
+2017-07-29T22:41:46.666569000 0.162024s notice: Running rethinkdb 2.3.5 (CLANG 8.0.0 (clang-800.0.38))...
+2017-07-29T22:41:46.692667000 0.188120s notice: Running on Darwin 16.6.0 x86_64
+2017-07-29T22:41:46.692723000 0.188174s notice: Loading data from directory /Developer/Projects/lap-counter/lap-counter-react/rethinkdb_data
+2017-07-29T22:41:46.770259000 0.265710s info: Automatically using cache size of 817 MB
+2017-07-29T22:41:46.770797000 0.266247s notice: Listening for intracluster connections on port 29015
+2017-07-29T22:41:46.773060000 0.268511s notice: Listening for client driver connections on port 28015
+2017-07-29T22:41:46.773247000 0.268697s notice: Listening for administrative HTTP connections on port 8080
+2017-07-29T22:41:46.773250000 0.268700s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2017-07-29T22:41:46.773254000 0.268704s notice: Listening on driver addresses: 127.0.0.1, ::1
+2017-07-29T22:41:46.773256000 0.268706s notice: Listening on http addresses: 127.0.0.1, ::1
+2017-07-29T22:41:46.773259000 0.268709s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2017-07-29T22:41:46.773262000 0.268712s notice: Server ready, "Tonis_iMac_122_fritz_box_0ql" 5e2be500-8ee3-4d49-b486-6f28c985fc32
+2017-07-29T22:41:47.734083000 1.229509s notice: A newer version of the RethinkDB server is available: 2.3.6. You can read the changelog at <https://github.com/rethinkdb/rethinkdb/releases>.
+2017-07-29T22:41:48.033692000 1.529118s notice: Server got SIGINT from pid 3252, uid 501; shutting down...
+2017-07-29T22:41:48.033822000 1.529247s notice: Shutting down client connections...
+2017-07-29T22:41:48.033939000 1.529365s notice: All client connections closed.
+2017-07-29T22:41:48.033944000 1.529370s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2017-07-29T22:41:48.049110000 1.544536s notice: Storage engine shut down.
