@@ -7,19 +7,16 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import TeamListType from '../types/TeamListType';
+import CreateTeamInputType from '../types/CreateTeamInputType';
+import TeamType from '../types/TeamType';
 import Team from '../models/Team';
 
-const teamList = {
-  type: TeamListType,
-  resolve() {
-    return Team.findAndCountAll().then(result => {
-      return {
-        total: result.count,
-        teams: result.rows,
-      };
-    });
+const createTeam = {
+  type: TeamType,
+  args: { team: { type: CreateTeamInputType } },
+  resolve(root, { team }) {
+    return Team.create(team);
   },
 };
 
-export default teamList;
+export default createTeam;

@@ -20,6 +20,11 @@ import sponsor from './queries/sponsor';
 import sponsorList from './queries/sponsorList';
 import team from './queries/team';
 import teamList from './queries/teamList';
+import createSponsor from './mutations/createSponsor';
+import createTeam from './mutations/createTeam';
+import deleteRunner from './mutations/deleteRunner';
+import deleteSponsor from './mutations/deleteSponsor';
+import deleteTeam from './mutations/deleteTeam';
 
 const schema = new Schema({
   query: new ObjectType({
@@ -39,6 +44,11 @@ const schema = new Schema({
     name: 'Mutation',
     fields: {
       createRunner,
+      deleteRunner,
+      createSponsor,
+      deleteSponsor,
+      createTeam,
+      deleteTeam,
     },
   }),
 });

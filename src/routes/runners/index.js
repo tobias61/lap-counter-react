@@ -8,19 +8,18 @@
  */
 
 import React from 'react';
-import Home from './Home';
 import Layout from '../../components/Layout';
+import RunnersTable from '../../components/RunnersTable/RunnersTable';
 
-async function action() {
+function action() {
   return {
-    chunks: ['home'],
-    title: 'React Starter Kit',
+    chunks: ['runners'],
+    title: 'Runners',
     component: (
       <Layout>
-        <Home />
+        <RunnersTable />
       </Layout>
     ),
   };
 }
-
 export default action;

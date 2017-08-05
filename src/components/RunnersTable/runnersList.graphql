@@ -1,0 +1,10 @@
+query RunnerList {
+  runnerList{
+    runners {
+      id
+      lastName
+      firstName
+      email
+    }
+  }
+}

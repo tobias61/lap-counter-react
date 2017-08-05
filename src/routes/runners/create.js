@@ -8,19 +8,19 @@
  */
 
 import React from 'react';
-import Home from './Home';
 import Layout from '../../components/Layout';
+import RunnerForm from "../../components/RunnerForm/RunnerForm";
 
-async function action() {
+
+function action() {
   return {
-    chunks: ['home'],
-    title: 'React Starter Kit',
+    chunks: ['runners-create'],
+    title: 'Create Runner',
     component: (
       <Layout>
-        <Home />
+        <RunnerForm />
       </Layout>
     ),
   };
 }
-
 export default action;
