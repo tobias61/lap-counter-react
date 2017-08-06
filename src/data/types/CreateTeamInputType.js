@@ -10,6 +10,7 @@
 import {
   GraphQLInputObjectType as ObjectType,
   GraphQLString as StringType,
+  GraphQLFloat as FloatType,
   GraphQLNonNull,
 } from 'graphql';
 
@@ -17,6 +18,7 @@ const CreateTeamInputType = new ObjectType({
   name: 'TeamInput',
   fields: {
     name: { type: new GraphQLNonNull(StringType) },
+    sponsor_amount: { type: new GraphQLNonNull(FloatType) },
   },
 });
 

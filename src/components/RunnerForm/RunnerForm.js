@@ -9,20 +9,12 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { compose, graphql } from 'react-apollo';
-import {
-  Form,
-  Input,
-  Tooltip,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Button,
-  AutoComplete,
-} from 'antd';
+import { message, Button, Form, Input, Select, InputNumber } from 'antd';
+import { graphql, compose } from 'react-apollo';
+import createRunner from './createRunner.graphql';
+import runnersQuery from './../RunnersTable/runnersList.graphql';
+import history from '../../history';
+import * as numeral from 'numeral';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -30,13 +22,34 @@ const Option = Select.Option;
 class RunnerForm extends React.Component {
   static propTypes = {
     id: PropTypes.string,
+    runner: PropTypes.object,
+    form: PropTypes.object,
+    createRunnerMutation: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    id: null,
+    runner: {},
   };
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        this.props
+          .createRunnerMutation({
+            refetchQueries: [{ query: runnersQuery }],
+            variables: { runnerInput: values },
+          })
+          .then(res => {
+            console.log(res);
+            // message.success(
+            //   this.props.id
+            //     ? 'Läufer wurde aktualisiert'
+            //     : 'Läufer wurde erstellt',
+            // );
+            history.push('/runners');
+          });
       }
     });
   };
@@ -69,7 +82,25 @@ class RunnerForm extends React.Component {
     };
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form style={{ padding: 10 }} onSubmit={this.handleSubmit}>
+        <FormItem {...formItemLayout} label={<span>Anrede</span>} hasFeedback>
+          {getFieldDecorator('gender', {
+            initialValue: 'frau',
+            rules: [
+              {
+                required: true,
+                message: '',
+                whitespace: true,
+              },
+            ],
+          })(
+            <Select>
+              <Option value="frau">Frau</Option>
+              <Option value="herr">Herr</Option>
+            </Select>,
+          )}
+        </FormItem>
+
         <FormItem {...formItemLayout} label={<span>Vorname</span>} hasFeedback>
           {getFieldDecorator('firstName', {
             rules: [
@@ -109,6 +140,18 @@ class RunnerForm extends React.Component {
           })(<Input />)}
         </FormItem>
 
+        <FormItem {...formItemLayout} label={<span>Spendenbetrag / Runde</span>} hasFeedback>
+          {getFieldDecorator('sponsor_amount', {
+            rules: [
+              {
+                pattern: /(?:^\d{1,3}(?:\.?\d{3})*(?:,\d{2})?$)|(?:^\d{1,3}(?:,?\d{3})*(?:\.\d{2})?$)/g,
+                message: 'Betrag ungültig',
+              },
+            ],
+          })(<Input />)}
+        </FormItem>
+
+
         <FormItem {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             Speichern
@@ -121,4 +164,6 @@ class RunnerForm extends React.Component {
 
 const WrappedRunnerForm = Form.create()(RunnerForm);
 
-export default WrappedRunnerForm;
+export default compose(graphql(createRunner, { name: 'createRunnerMutation' }))(
+  WrappedRunnerForm,
+);

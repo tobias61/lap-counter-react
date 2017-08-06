@@ -1,0 +1,9 @@
+mutation updateRunner($id: String, $runnerInput: RunnerInput) {
+  updateRunner(id: $id,runner: $runnerInput) {
+    id
+    firstName
+    lastName
+    email
+    sponsor_amount
+  }
+}

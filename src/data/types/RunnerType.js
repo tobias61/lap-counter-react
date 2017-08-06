@@ -11,8 +11,11 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLID as ID,
   GraphQLString as StringType,
+  GraphQLFloat as FloatType,
   GraphQLNonNull as NonNull,
 } from 'graphql';
+import TeamType from './TeamType';
+import Team from '../models/Team';
 
 const RunnerType = new ObjectType({
   name: 'Runner',
@@ -32,6 +35,14 @@ const RunnerType = new ObjectType({
     email: {
       type: StringType,
       resolve: res => res.email,
+    },
+    sponsor_amount: {
+      type: FloatType,
+      resolve: res => res.sponsor_amount,
+    },
+    team: {
+      type: TeamType,
+      resolve: res => Team.findById(res.team_id),
     },
   },
 });

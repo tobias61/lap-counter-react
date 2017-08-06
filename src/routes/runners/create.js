@@ -18,6 +18,7 @@ function action() {
     title: 'Create Runner',
     component: (
       <Layout>
+        <h2>Neuer Läufer</h2>
         <RunnerForm />
       </Layout>
     ),

@@ -9,16 +9,15 @@
 
 import React from 'react';
 import Layout from '../../components/Layout';
-import RunnerForm from '../../components/RunnerForm/RunnerForm';
+import RunnersImport from '../../components/RunnersImport/RunnersImport';
 
-function action(params) {
+function action() {
   return {
-    chunks: ['runners-update'],
-    title: 'Update Runner',
+    chunks: ['import'],
+    title: 'Import',
     component: (
       <Layout>
-        <h2></h2>
-        <RunnerForm id={params.id} />
+        <RunnersImport />
       </Layout>
     ),
   };

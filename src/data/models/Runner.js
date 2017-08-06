@@ -48,23 +48,13 @@ const Runner = Model.define(
       type: DataType.DATE,
     },
 
-    sponsor_id: {
-      type: DataType.INTEGER,
-
-      references: {
-        // This is a reference to another model
-        model: Sponsor,
-
-        // This is the column name of the referenced model
-        key: 'id',
-
-        // This declares when to check the foreign key constraint. PostgreSQL only.
-        deferrable: DataType.Deferrable.INITIALLY_IMMEDIATE
-      }
+    sponsor_amount: {
+      type: DataType.FLOAT,
     },
 
+
     team_id: {
-      type: DataType.INTEGER,
+      type: DataType.UUID,
 
       references: {
         // This is a reference to another model

@@ -10,20 +10,20 @@
 import DataType from 'sequelize';
 import Model from '../sequelize';
 
-const Team = Model.define(
-  'Team',
-  {
-    id: {
-      type: DataType.UUID,
-      defaultValue: DataType.UUIDV1,
-      primaryKey: true,
-    },
+const Team = Model.define('Team', {
+  id: {
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV1,
+    primaryKey: true,
+  },
 
-    name: {
-      type: DataType.STRING(255),
-    }
+  name: {
+    type: DataType.STRING(255),
+  },
 
-  }
-);
+  sponsor_amount: {
+    type: DataType.FLOAT,
+  },
+});
 
 export default Team;

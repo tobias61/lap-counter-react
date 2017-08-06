@@ -16,23 +16,31 @@ import normalizeCss from 'normalize.css';
 import s from './Layout.css';
 import Header from '../Header';
 import Feedback from '../Feedback';
-import Footer from '../Footer';
+import AppFooter from '../Footer';
+import { Layout } from 'antd';
 
-class Layout extends React.Component {
+const { Content, Footer } = Layout;
+
+class AppLayout extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
   };
 
   render() {
     return (
-      <div>
+      <Layout>
         <Header />
-        {this.props.children}
-        <Feedback />
-        <Footer />
-      </div>
+        <Content
+          style={{ padding: '0 50px', marginTop: 64, minHeight: '100%' }}
+        >
+          <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
+            {this.props.children}
+          </div>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>Toni Möckel ©2017</Footer>
+      </Layout>
     );
   }
 }
 
-export default withStyles(normalizeCss, s)(Layout);
+export default withStyles(normalizeCss, s)(AppLayout);

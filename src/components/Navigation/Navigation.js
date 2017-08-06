@@ -9,6 +9,7 @@
 
 import React from 'react';
 import { Menu } from 'antd';
+import history from '../../history';
 
 class Navigation extends React.Component {
   render() {
@@ -17,11 +18,12 @@ class Navigation extends React.Component {
         theme="dark"
         mode="horizontal"
         defaultSelectedKeys={['1']}
+        onClick={(item, key) => {
+          history.push(item.key);
+        }}
         style={{ lineHeight: '64px' }}
       >
-        <Menu.Item key="1">Läufer</Menu.Item>
-        <Menu.Item key="2">Teams</Menu.Item>
-        <Menu.Item key="3">Sponsoren</Menu.Item>
+        <Menu.Item key="/runners">Läufer</Menu.Item>
       </Menu>
     );
   }

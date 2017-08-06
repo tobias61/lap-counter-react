@@ -1,0 +1,6 @@
+mutation deleteRunner($id: String) {
+  deleteRunner(id: $id) {
+    success
+    message
+  }
+}

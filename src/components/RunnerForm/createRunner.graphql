@@ -1,0 +1,9 @@
+mutation createRunner($runnerInput: RunnerInput) {
+  createRunner(runner: $runnerInput) {
+    id
+    firstName
+    lastName
+    email
+    sponsor_amount
+  }
+}

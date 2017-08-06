@@ -8,12 +8,12 @@
  */
 
 import Runner from '../models/Runner';
-import { GraphQLString } from 'graphql';
+import { GraphQLID } from 'graphql';
 import SuccessType from '../types/SuccessType';
 
 const deleteRunner = {
   type: SuccessType,
-  args: { id: { type: GraphQLString } },
+  args: { id: { type: GraphQLID } },
   resolve(root, { id }) {
     return Runner.destroy({
       where: {

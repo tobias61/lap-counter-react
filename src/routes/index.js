@@ -40,6 +40,10 @@ const routes = {
       load: () => import(/* webpackChunkName: 'privacy' */ './privacy'),
     },
     {
+      path: '/import',
+      load: () => import(/* webpackChunkName: 'import' */ './import'),
+    },
+    {
       path: '/runners',
       load: () => import(/* webpackChunkName: 'runners' */ './runners'),
     },
