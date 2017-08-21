@@ -1,0 +1,6 @@
+query getSponsor($id: String) {
+  sponsor(id: $id){
+    id
+    name
+  }
+}

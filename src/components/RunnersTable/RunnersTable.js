@@ -65,11 +65,13 @@ class RunnersTable extends React.Component {
         title: 'Vorname',
         dataIndex: 'firstName',
         key: 'firstName',
+        render: (text, item) => <a href={"/runners/"+item.key}>{text}</a>,
       },
       {
         title: 'Nachname',
         dataIndex: 'lastName',
         key: 'lastName',
+        render: (text, item) => <a href={"/runners/"+item.key}>{text}</a>,
       },
       {
         title: 'E-Mail',

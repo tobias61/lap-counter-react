@@ -7,8 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-
-import SponsorType from "../types/SponsorType";
+import SponsorType from '../types/SponsorType';
 import Sponsor from '../models/Sponsor';
 import {
   GraphQLString as StringType,
@@ -17,12 +16,9 @@ import {
 
 const sponsor = {
   type: SponsorType,
-  args: { id: { type: new NonNull(StringType) } },
-  resolve(root, {id}) {
-    return Sponsor.findById(id).then(result => ({
-      total: result.count,
-      runners: result.rows,
-    }));
+  args: { id: { type: StringType } },
+  resolve(root, { id }) {
+    return Sponsor.findById(id);
   },
 };
 

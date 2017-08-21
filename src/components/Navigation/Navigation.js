@@ -24,6 +24,7 @@ class Navigation extends React.Component {
         style={{ lineHeight: '64px' }}
       >
         <Menu.Item key="/runners">Läufer</Menu.Item>
+        <Menu.Item key="/sponsors">Sponsors</Menu.Item>
       </Menu>
     );
   }

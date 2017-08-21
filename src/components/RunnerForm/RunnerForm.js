@@ -11,7 +11,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { message, Button, Form, Input, Select, InputNumber } from 'antd';
 import { graphql, compose } from 'react-apollo';
+import getRunner from './getRunner.graphql';
 import createRunner from './createRunner.graphql';
+import updateRunner from './updateRunner.graphql';
 import runnersQuery from './../RunnersTable/runnersList.graphql';
 import history from '../../history';
 import * as numeral from 'numeral';
@@ -22,15 +24,22 @@ const Option = Select.Option;
 class RunnerForm extends React.Component {
   static propTypes = {
     id: PropTypes.string,
-    runner: PropTypes.object,
+    getRunner: PropTypes.object.isRequired,
     form: PropTypes.object,
     createRunnerMutation: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     id: null,
-    runner: {},
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      runner: {},
+    };
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -53,6 +62,10 @@ class RunnerForm extends React.Component {
       }
     });
   };
+
+  componentDidMount() {
+    console.log(this.props);
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -85,7 +98,7 @@ class RunnerForm extends React.Component {
       <Form style={{ padding: 10 }} onSubmit={this.handleSubmit}>
         <FormItem {...formItemLayout} label={<span>Anrede</span>} hasFeedback>
           {getFieldDecorator('gender', {
-            initialValue: 'frau',
+            initialValue: 'weiblich',
             rules: [
               {
                 required: true,
@@ -95,8 +108,8 @@ class RunnerForm extends React.Component {
             ],
           })(
             <Select>
-              <Option value="frau">Frau</Option>
-              <Option value="herr">Herr</Option>
+              <Option value="weiblich">Frau</Option>
+              <Option value="männlich">Herr</Option>
             </Select>,
           )}
         </FormItem>
@@ -132,25 +145,45 @@ class RunnerForm extends React.Component {
                 type: 'email',
                 message: 'Keine gültige E-mail Adresse!',
               },
-              {
-                required: true,
-                message: 'E-Mail Adresse eintragen!',
-              },
             ],
           })(<Input />)}
         </FormItem>
 
-        <FormItem {...formItemLayout} label={<span>Spendenbetrag / Runde</span>} hasFeedback>
-          {getFieldDecorator('sponsor_amount', {
-            rules: [
-              {
-                pattern: /(?:^\d{1,3}(?:\.?\d{3})*(?:,\d{2})?$)|(?:^\d{1,3}(?:,?\d{3})*(?:\.\d{2})?$)/g,
-                message: 'Betrag ungültig',
-              },
-            ],
-          })(<Input />)}
+        <FormItem
+          {...formItemLayout}
+          label={<span>Team / Sponsor</span>}
+          hasFeedback
+          extra={
+            this.props.getRunner.runner.sponsor
+              ? <a href={`/sponsors/${this.props.getRunner.runner.sponsor.id}`}>
+                  Sponsor bearbeiten
+                </a>
+              : <a href={`/sponsors/create`}>
+                Sponsor erstellen
+              </a>
+          }
+        >
+          {getFieldDecorator('sponsor_id', {
+            rules: [],
+          })(
+            <Select
+              showSearch
+              placeholder="Team wählen"
+              optionFilterProp="children"
+              filterOption={(input, option) => {
+               return option.props.children.join(' ')
+                 .toLowerCase()
+                 .indexOf(input.toLowerCase()) >= 0
+              }}
+            >
+              {this.props.getRunner.sponsorList.sponsors.map(sponsor =>
+                <Option key={sponsor.id} value={sponsor.id}>
+                  {sponsor.name} ({sponsor.email})
+                </Option>,
+              )}
+            </Select>,
+          )}
         </FormItem>
-
 
         <FormItem {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
@@ -162,8 +195,39 @@ class RunnerForm extends React.Component {
   }
 }
 
-const WrappedRunnerForm = Form.create()(RunnerForm);
+const WrappedRunnerForm = Form.create({
+  mapPropsToFields: props => {
+    if (!props.getRunner.runner) return {};
 
-export default compose(graphql(createRunner, { name: 'createRunnerMutation' }))(
-  WrappedRunnerForm,
-);
+    return {
+      gender: {
+        value: props.getRunner.runner.gender,
+      },
+      firstName: {
+        value: props.getRunner.runner.firstName,
+      },
+      lastName: {
+        value: props.getRunner.runner.lastName,
+      },
+      email: {
+        value: props.getRunner.runner.email,
+      },
+      sponsor_id: {
+        value: props.getRunner.runner.sponsor.id,
+      },
+    };
+  },
+})(RunnerForm);
+
+export default compose(
+  graphql(getRunner, {
+    name: 'getRunner',
+    options: props => ({
+      variables: { id: props.id },
+    }),
+  }),
+  graphql(createRunner, {
+    name: 'createRunnerMutation',
+  }),
+  graphql(updateRunner, { name: 'updateRunnerMutation' }),
+)(WrappedRunnerForm);

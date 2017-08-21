@@ -34,6 +34,8 @@ import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import config from './config';
+import { postCSVImport } from './data/import/import-request';
+import * as fileUpload from "express-fileupload";
 
 const app = express();
 
@@ -98,6 +100,8 @@ app.get(
     res.redirect('/');
   },
 );
+app.use(fileUpload());
+app.post('/upload', postCSVImport);
 
 //
 // Register API middleware
@@ -156,6 +160,7 @@ app.get('*', async (req, res, next) => {
       // https://github.com/kriasoft/isomorphic-style-loader
       insertCss: (...styles) => {
         // eslint-disable-next-line no-underscore-dangle
+        console.log(styles)
         styles.forEach(style => css.add(style._getCss()));
       },
       fetch,

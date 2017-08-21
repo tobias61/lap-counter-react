@@ -25,6 +25,8 @@ import createTeam from './mutations/createTeam';
 import deleteRunner from './mutations/deleteRunner';
 import deleteSponsor from './mutations/deleteSponsor';
 import deleteTeam from './mutations/deleteTeam';
+import updateRunner from "./mutations/updateRunner";
+import updateSponsor from "./mutations/updateSponsor";
 
 const schema = new Schema({
   query: new ObjectType({
@@ -36,19 +38,17 @@ const schema = new Schema({
       runner,
       sponsor,
       sponsorList,
-      team,
-      teamList,
     },
   }),
   mutation: new ObjectType({
     name: 'Mutation',
     fields: {
       createRunner,
+      updateRunner,
       deleteRunner,
       createSponsor,
       deleteSponsor,
-      createTeam,
-      deleteTeam,
+      updateSponsor,
     },
   }),
 });

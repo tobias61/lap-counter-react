@@ -10,13 +10,21 @@
 import {
   GraphQLInputObjectType as ObjectType,
   GraphQLString as StringType,
+  GraphQLBoolean as BooleanType,
   GraphQLNonNull,
 } from 'graphql';
 
 const CreateSponsorInputType = new ObjectType({
   name: 'SponsorInput',
   fields: {
+    email: { type: new GraphQLNonNull(StringType) },
     name: { type: new GraphQLNonNull(StringType) },
+    contact_firstName: { type: StringType },
+    contact_lastName: { type: StringType },
+    sponsor_amount: { type: StringType },
+    private: { type: BooleanType },
+    cash: { type: BooleanType },
+    donation_receipt: { type: BooleanType },
   },
 });
 

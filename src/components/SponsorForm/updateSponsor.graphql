@@ -1,0 +1,9 @@
+mutation updateSponsor($id: String, $sponsorInput: SponsorInput) {
+  updateSponsor(id: $id,sponsor: $sponsorInput) {
+    id
+    firstName
+    lastName
+    email
+    sponsor_amount
+  }
+}

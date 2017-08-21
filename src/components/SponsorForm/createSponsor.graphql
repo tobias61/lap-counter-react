@@ -1,0 +1,9 @@
+mutation createSponsor($sponsorInput: SponsorInput) {
+  createSponsor(sponsor: $sponsorInput) {
+    id
+    name
+    contact_firstName
+    contact_lastName
+    sponsor_amount
+  }
+}

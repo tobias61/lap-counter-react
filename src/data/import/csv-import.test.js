@@ -6,7 +6,7 @@ describe('CSV Import',()=>{
     const res = await importer.loadCSV();
 
     expect(res).toBeTruthy();
-    expect(res.length).toBe(2);
+    expect(res.length).toBe(20);
     expect(res[0].length).toBe(8);
   });
 

@@ -1,0 +1,6 @@
+mutation deleteSponsor($id: String) {
+  deleteSponsor(id: $id) {
+    success
+    message
+  }
+}

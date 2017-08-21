@@ -21,9 +21,8 @@ const CreateRunnerInputType = new ObjectType({
     gender: { type: new GraphQLNonNull(StringType) },
     firstName: { type: new GraphQLNonNull(StringType) },
     lastName: { type: new GraphQLNonNull(StringType) },
-    email: { type: new GraphQLNonNull(StringType) },
-    sponsor_amount: { type: FloatType },
-    team_id: { type: ID },
+    email: { type: StringType },
+    sponsor_id: { type: ID },
   },
 });
 

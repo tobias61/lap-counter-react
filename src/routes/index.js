@@ -55,6 +55,14 @@ const routes = {
       path: '/runners/:id',
       load: () => import(/* webpackChunkName: 'runners-update' */ './runners/update'),
     },
+    {
+      path: '/sponsors',
+      load: () => import(/* webpackChunkName: 'sponsors' */ './sponsors'),
+    },
+    {
+      path: '/sponsors/create',
+      load: () => import(/* webpackChunkName: 'sponsors-create' */ './sponsors/create'),
+    },
     // Wildcard routes, e.g. { path: '*', ... } (must go last)
     {
       path: '*',

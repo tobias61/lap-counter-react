@@ -9,17 +9,15 @@
 
 import React from 'react';
 import Layout from '../../components/Layout';
-import RunnerForm from '../../components/RunnerForm/RunnerForm';
+import SponsorsTable from '../../components/SponsorsTable/SponsorsTable';
 
-function action(options) {
-
+function action() {
   return {
-    chunks: ['runners-update'],
-    title: 'Update Runner',
+    chunks: ['sponsors'],
+    title: 'Sponsors',
     component: (
       <Layout>
-        <h2>Läufer Details</h2>
-        <RunnerForm id={options.params.id} />
+        <SponsorsTable />
       </Layout>
     ),
   };

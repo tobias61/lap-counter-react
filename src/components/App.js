@@ -10,27 +10,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider as ReduxProvider } from 'react-redux';
-import * as numeral from 'numeral';
-
-numeral.register('locale', 'de', {
-  delimiters: {
-    thousands: ' ',
-    decimal: ',',
-  },
-  abbreviations: {
-    thousand: 'k',
-    million: 'm',
-    billion: 'b',
-    trillion: 't',
-  },
-  ordinal(number) {
-    return number === 1 ? 'er' : 'ème';
-  },
-  currency: {
-    symbol: '€',
-  },
-});
-numeral.locale('de');
 
 const ContextType = {
   // Enables critical path CSS rendering

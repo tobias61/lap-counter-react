@@ -17,13 +17,40 @@ const Sponsor = Model.define('Sponsor', {
     primaryKey: true,
   },
 
+  email: {
+    type: DataType.STRING(255),
+    validate: { isEmail: true },
+    unique: true,
+  },
+
   name: {
+    type: DataType.STRING(255),
+  },
+
+  contact_firstName: {
+    type: DataType.STRING(255),
+  },
+
+  contact_lastName: {
     type: DataType.STRING(255),
   },
 
   sponsor_amount: {
     type: DataType.FLOAT,
   },
+
+  private: {
+    type: DataType.BOOLEAN,
+  },
+
+  cash: {
+    type: DataType.BOOLEAN,
+  },
+
+  donation_receipt: {
+    type: DataType.BOOLEAN,
+  },
+
 });
 
 export default Sponsor;
