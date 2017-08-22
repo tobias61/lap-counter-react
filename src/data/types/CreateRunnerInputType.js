@@ -12,6 +12,7 @@ import {
   GraphQLID as ID,
   GraphQLString as StringType,
   GraphQLFloat as FloatType,
+  GraphQLInt as IntegerType,
   GraphQLNonNull,
 } from 'graphql';
 
@@ -22,6 +23,7 @@ const CreateRunnerInputType = new ObjectType({
     firstName: { type: new GraphQLNonNull(StringType) },
     lastName: { type: new GraphQLNonNull(StringType) },
     email: { type: StringType },
+    number: { type: IntegerType },
     sponsor_id: { type: ID },
   },
 });

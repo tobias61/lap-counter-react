@@ -8,8 +8,8 @@
  */
 
 import {
-  GraphQLSchema as Schema,
   GraphQLObjectType as ObjectType,
+  GraphQLSchema as Schema,
 } from 'graphql';
 import runnerList from './queries/runnerList';
 import runner from './queries/runner';
@@ -18,15 +18,14 @@ import me from './queries/me';
 import createRunner from './mutations/createRunner';
 import sponsor from './queries/sponsor';
 import sponsorList from './queries/sponsorList';
-import team from './queries/team';
-import teamList from './queries/teamList';
 import createSponsor from './mutations/createSponsor';
-import createTeam from './mutations/createTeam';
 import deleteRunner from './mutations/deleteRunner';
 import deleteSponsor from './mutations/deleteSponsor';
-import deleteTeam from './mutations/deleteTeam';
-import updateRunner from "./mutations/updateRunner";
-import updateSponsor from "./mutations/updateSponsor";
+import updateRunner from './mutations/updateRunner';
+import updateSponsor from './mutations/updateSponsor';
+import runnerLaps from './queries/runnerLaps';
+import addLap from './mutations/addLap';
+import checkNumber from './queries/checkNumber';
 
 const schema = new Schema({
   query: new ObjectType({
@@ -38,6 +37,8 @@ const schema = new Schema({
       runner,
       sponsor,
       sponsorList,
+      runnerLaps,
+      checkNumber,
     },
   }),
   mutation: new ObjectType({
@@ -49,6 +50,7 @@ const schema = new Schema({
       createSponsor,
       deleteSponsor,
       updateSponsor,
+      addLap,
     },
   }),
 });

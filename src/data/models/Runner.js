@@ -70,6 +70,11 @@ const Runner = Model.define(
         deferrable: DataType.Deferrable.INITIALLY_IMMEDIATE,
       },
     },
+
+    number: {
+      type: DataType.INTEGER,
+      unique: true,
+    },
   },
   {
     indexes: [{ fields: ['email'] }],

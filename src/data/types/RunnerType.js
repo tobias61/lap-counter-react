@@ -12,6 +12,7 @@ import {
   GraphQLID as ID,
   GraphQLString as StringType,
   GraphQLFloat as FloatType,
+  GraphQLInt as IntegerType,
   GraphQLNonNull as NonNull,
 } from 'graphql';
 import SponsorType from './SponsorType';
@@ -47,6 +48,10 @@ const RunnerType = new ObjectType({
     sponsor: {
       type: SponsorType,
       resolve: res => Sponsor.findById(res.sponsor_id),
+    },
+    number: {
+      type: IntegerType,
+      resolve: res => res.number,
     },
   },
 });
