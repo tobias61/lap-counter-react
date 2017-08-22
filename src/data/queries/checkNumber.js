@@ -9,15 +9,21 @@
 
 import CheckNumberType from '../types/CheckNumberType';
 import Runner from './../models/Runner';
-import { GraphQLInt, GraphQLNonNull as NonNull } from 'graphql';
+import { GraphQLInt, GraphQLNonNull as NonNull, GraphQLString } from 'graphql';
 
 const checkNumber = {
   type: CheckNumberType,
-  args: { number: { type: new NonNull(GraphQLInt) } },
-  resolve(root, { number }) {
-    return Runner.count({ where: { number } }).then(c => ({
-      available: c === 0,
-    }));
+  args: {
+    number: { type: new NonNull(GraphQLInt) },
+    runner_id: { type: GraphQLString },
+  },
+  resolve(root, { number, runner_id }) {
+    return Runner.findOne({ where: { number } }).then(result => {
+      console.log(result.id, runner_id);
+			return {
+				available: !result || result.id === runner_id,
+			}
+    });
   },
 };
 

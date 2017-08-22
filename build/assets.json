@@ -1,0 +1,47 @@
+{
+  "runners": {
+    "js": "/assets/runners.chunk.js"
+  },
+  "sponsors": {
+    "js": "/assets/sponsors.chunk.js"
+  },
+  "runners-update": {
+    "js": "/assets/runners-update.chunk.js"
+  },
+  "runners-create": {
+    "js": "/assets/runners-create.chunk.js"
+  },
+  "sponsors-create": {
+    "js": "/assets/sponsors-create.chunk.js"
+  },
+  "import": {
+    "js": "/assets/import.chunk.js"
+  },
+  "home": {
+    "js": "/assets/home.chunk.js"
+  },
+  "privacy": {
+    "js": "/assets/privacy.chunk.js"
+  },
+  "about": {
+    "js": "/assets/about.chunk.js"
+  },
+  "register": {
+    "js": "/assets/register.chunk.js"
+  },
+  "not-found": {
+    "js": "/assets/not-found.chunk.js"
+  },
+  "login": {
+    "js": "/assets/login.chunk.js"
+  },
+  "contact": {
+    "js": "/assets/contact.chunk.js"
+  },
+  "client": {
+    "js": "/assets/client.js"
+  },
+  "vendor": {
+    "js": "/assets/vendor.js"
+  }
+}

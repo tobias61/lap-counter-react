@@ -26,6 +26,9 @@ import updateSponsor from './mutations/updateSponsor';
 import runnerLaps from './queries/runnerLaps';
 import addLap from './mutations/addLap';
 import checkNumber from './queries/checkNumber';
+import createTeam from './mutations/createTeam';
+import updateTeam from './mutations/updateTeam';
+import deleteTeam from './mutations/deleteTeam';
 
 const schema = new Schema({
   query: new ObjectType({
@@ -50,6 +53,9 @@ const schema = new Schema({
       createSponsor,
       deleteSponsor,
       updateSponsor,
+      createTeam,
+      updateTeam,
+      deleteTeam,
       addLap,
     },
   }),

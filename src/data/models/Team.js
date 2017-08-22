@@ -9,6 +9,7 @@
 
 import DataType from 'sequelize';
 import Model from '../sequelize';
+import Sponsor from "./Sponsor";
 
 const Team = Model.define('Team', {
   id: {
@@ -23,6 +24,20 @@ const Team = Model.define('Team', {
 
   sponsor_amount: {
     type: DataType.FLOAT,
+  },
+
+  sponsor_id: {
+    type: DataType.UUID,
+    references: {
+      // This is a reference to another model
+      model: Sponsor,
+
+      // This is the column name of the referenced model
+      key: 'id',
+
+      // This declares when to check the foreign key constraint. PostgreSQL only.
+      deferrable: DataType.Deferrable.INITIALLY_IMMEDIATE,
+    },
   },
 });
 

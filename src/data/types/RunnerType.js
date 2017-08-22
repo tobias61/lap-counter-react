@@ -33,6 +33,10 @@ const RunnerType = new ObjectType({
       type: StringType,
       resolve: res => res.lastName,
     },
+    birthday: {
+      type: StringType,
+      resolve: res => res.birthday,
+    },
     gender: {
       type: StringType,
       resolve: res => res.gender,
