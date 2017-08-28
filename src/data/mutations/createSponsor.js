@@ -15,6 +15,7 @@ const createSponsor = {
   type: SponsorType,
   args: { sponsor: { type: CreateSponsorInputType } },
   resolve(root, { sponsor }) {
+    sponsor.personal = false;
     return Sponsor.create(sponsor);
   },
 };

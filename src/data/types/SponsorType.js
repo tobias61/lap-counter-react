@@ -43,10 +43,9 @@ const SponsorType = new ObjectType({
       type: FloatType,
       resolve: res => res.sponsor_amount,
     },
-
-    private: {
+    personal: {
       type: BooleanType,
-      resolve: res => res.private,
+      resolve: res => res.personal,
     },
 
     cash: {

@@ -16,12 +16,9 @@ import Team from './../models/Team';
 
 const team = {
   type: TeamType,
-  args: { id: { type: new NonNull(StringType) } },
-  resolve() {
-    return Team.findAndCountAll().then(result => ({
-      total: result.count,
-      runners: result.rows,
-    }));
+  args: { id: { type: StringType } },
+  resolve(root, { id }) {
+    return Team.findById(id);
   },
 };
 

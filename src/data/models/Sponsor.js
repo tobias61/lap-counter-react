@@ -19,8 +19,7 @@ const Sponsor = Model.define('Sponsor', {
 
   email: {
     type: DataType.STRING(255),
-    validate: { isEmail: true },
-    unique: true,
+    validate: { isEmail: true }
   },
 
   name: {
@@ -39,7 +38,7 @@ const Sponsor = Model.define('Sponsor', {
     type: DataType.FLOAT,
   },
 
-  private: {
+  personal: {
     type: DataType.BOOLEAN,
   },
 

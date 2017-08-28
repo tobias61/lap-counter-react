@@ -15,11 +15,15 @@ import Runner from '../models/Runner';
 import CreatePersonalRunnerInputType from '../types/CreatePersonalRunnerInputType';
 import Sponsor from '../models/Sponsor';
 import { CreateSponsorInputTypeFields } from '../types/CreateSponsorInputType';
+import { GraphQLID, GraphQLNonNull } from 'graphql';
 
-const createPersonalRunner = {
+const updatePersonalRunner = {
   type: RunnerType,
-  args: { runner: { type: CreatePersonalRunnerInputType } },
-  resolve(root, { runner }) {
+  args: {
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    runner: { type: CreatePersonalRunnerInputType },
+  },
+  resolve(root, { runner, id }) {
     const reducer = (res, cur) => {
       res[cur] = runner[cur];
       return res;
@@ -30,10 +34,13 @@ const createPersonalRunner = {
     ).reduce(reducer, {
       personal: true,
     });
-    return Sponsor.create(sponsorValues).then(res =>
-      Runner.create({ ...runnerValues, sponsor_id: res.id }),
+
+    return Runner.findById(id).then(foundRunner =>
+      Sponsor.update(sponsorValues, {
+        where: { id: foundRunner.sponsor_id },
+      }).then(res => foundRunner.update({ ...runnerValues })),
     );
   },
 };
 
-export default createPersonalRunner;
+export default updatePersonalRunner;

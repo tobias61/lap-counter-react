@@ -22,8 +22,9 @@ const RunnerWithSponsorInput = new ObjectType({
   name: 'RunnerWithSponsorInput',
   fields: {
     ...RunnerInputFields,
-    ...CreateSponsorInputTypeFields
+    ...CreateSponsorInputTypeFields,
+    name: { type: StringType },
   },
 });
 
-export default CreateRunnerInputType;
+export default RunnerWithSponsorInput;

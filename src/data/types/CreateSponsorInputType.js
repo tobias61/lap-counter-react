@@ -15,7 +15,7 @@ import {
 } from 'graphql';
 export const CreateSponsorInputTypeFields = {
 	email: { type: StringType },
-	name: { type: new GraphQLNonNull(StringType) },
+	name: { type: (StringType) },
 	contact_firstName: { type: StringType },
 	contact_lastName: { type: StringType },
 	sponsor_amount: { type: StringType },

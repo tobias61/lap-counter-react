@@ -20,9 +20,11 @@ export const RunnerInputFields = {
 	gender: { type: new GraphQLNonNull(StringType) },
 	firstName: { type: new GraphQLNonNull(StringType) },
 	lastName: { type: new GraphQLNonNull(StringType) },
+  birthday: { type: new GraphQLNonNull(StringType) },
 	email: { type: StringType },
 	number: { type: IntegerType },
 	sponsor_id: { type: ID },
+  team_id: { type: ID },
 }
 
 const CreateRunnerInputType = new ObjectType({

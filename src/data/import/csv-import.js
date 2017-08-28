@@ -29,7 +29,7 @@ class CSVImporter {
                   contact_lastName: item.Name,
                   name: item['Name Firma / Verein / Schule o.ä.'] || `${item.Vorname} ${item.Name}`,
                   insert: item.Submitted,
-                  private: false,
+                  personal: false,
                 })
                   .then(sponsor => {
                     const runners = [];
@@ -64,7 +64,7 @@ class CSVImporter {
                   contact_lastName: item.Name,
                   name: item.Sponsor || `${item.Vorname} ${item.Name}`,
                   insert: item.Submitted,
-                  private: true,
+                  personal: true,
                 })
                   .then(sponsor => {
                     Runner.create({

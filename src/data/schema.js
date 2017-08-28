@@ -29,7 +29,13 @@ import checkNumber from './queries/checkNumber';
 import createTeam from './mutations/createTeam';
 import updateTeam from './mutations/updateTeam';
 import deleteTeam from './mutations/deleteTeam';
-import createPersonalRunner from "./mutations/createPersonalRunner";
+import createPersonalRunner from './mutations/createPersonalRunner';
+import updatePersonalRunner from './mutations/updatePersonalRunner';
+import team from "./queries/team";
+import teamList from "./queries/teamList";
+import teamRunnerList from "./queries/teamRunnerList";
+import addRunnersToTeam from "./mutations/addRunnersToTeam";
+import removeRunnerFromTeam from "./mutations/removeRunnerFromTeam";
 
 const schema = new Schema({
   query: new ObjectType({
@@ -41,8 +47,11 @@ const schema = new Schema({
       runner,
       sponsor,
       sponsorList,
+      team,
+      teamList,
       runnerLaps,
       checkNumber,
+      teamRunnerList,
     },
   }),
   mutation: new ObjectType({
@@ -58,8 +67,10 @@ const schema = new Schema({
       updateTeam,
       deleteTeam,
       addLap,
-			createPersonalRunner,
-
+      createPersonalRunner,
+      updatePersonalRunner,
+      addRunnersToTeam,
+      removeRunnerFromTeam,
     },
   }),
 });

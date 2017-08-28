@@ -19,7 +19,6 @@ const checkNumber = {
   },
   resolve(root, { number, runner_id }) {
     return Runner.findOne({ where: { number } }).then(result => {
-      console.log(result.id, runner_id);
 			return {
 				available: !result || result.id === runner_id,
 			}

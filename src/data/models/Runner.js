@@ -35,8 +35,7 @@ const Runner = Model.define(
 
     email: {
       type: DataType.STRING(255),
-      validate: { isEmail: true },
-      unique: true,
+      validate: { isEmail: true }
     },
 
     insert: {
@@ -62,6 +61,21 @@ const Runner = Model.define(
       references: {
         // This is a reference to another model
         model: Sponsor,
+
+        // This is the column name of the referenced model
+        key: 'id',
+
+        // This declares when to check the foreign key constraint. PostgreSQL only.
+        deferrable: DataType.Deferrable.INITIALLY_IMMEDIATE,
+      },
+    },
+
+    team_id: {
+      type: DataType.UUID,
+
+      references: {
+        // This is a reference to another model
+        model: Team,
 
         // This is the column name of the referenced model
         key: 'id',

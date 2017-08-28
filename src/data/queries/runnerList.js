@@ -9,16 +9,36 @@
 
 import RunnerListType from '../types/RunnerListType';
 import Runner from '../models/Runner';
+import { GraphQLString } from 'graphql';
 
 const runnerList = {
   type: RunnerListType,
-  resolve() {
-    return Runner.findAndCountAll().then(result => {
-      return {
-        total: result.count,
-        runners: result.rows,
-      };
+  args: {
+    query: { type: GraphQLString },
+  },
+  resolve(root, { query }) {
+    const resultCall = result => ({
+      total: result.count,
+      runners: result.rows,
     });
+    if (query && query !== '') {
+      return Runner.findAndCountAll({
+        where: {
+          $or: [
+            {
+              firstName: { $like: `%${query}%` },
+            },
+            {
+              lastName: { $like: `%${query}%` },
+            },
+            {
+              email: { $like: `%${query}%` },
+            },
+          ],
+        },
+      }).then(resultCall);
+    }
+    return Runner.findAndCountAll().then(resultCall);
   },
 };
 

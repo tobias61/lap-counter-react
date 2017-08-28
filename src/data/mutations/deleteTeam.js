@@ -8,12 +8,12 @@
  */
 
 import Team from '../models/Team';
-import { GraphQLString } from 'graphql';
+import { GraphQLID, GraphQLNonNull } from 'graphql';
 import SuccessType from '../types/SuccessType';
 
 const deleteTeam = {
   type: SuccessType,
-  args: { id: { type: GraphQLString } },
+  args: { id: { type: new GraphQLNonNull(GraphQLID) } },
   resolve(root, { id }) {
     return Team.destroy({
       where: {
