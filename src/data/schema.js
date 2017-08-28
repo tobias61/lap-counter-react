@@ -29,6 +29,7 @@ import checkNumber from './queries/checkNumber';
 import createTeam from './mutations/createTeam';
 import updateTeam from './mutations/updateTeam';
 import deleteTeam from './mutations/deleteTeam';
+import createPersonalRunner from "./mutations/createPersonalRunner";
 
 const schema = new Schema({
   query: new ObjectType({
@@ -57,6 +58,8 @@ const schema = new Schema({
       updateTeam,
       deleteTeam,
       addLap,
+			createPersonalRunner,
+
     },
   }),
 });

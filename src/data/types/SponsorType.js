@@ -58,6 +58,11 @@ const SponsorType = new ObjectType({
       type: BooleanType,
       resolve: res => res.donation_receipt,
     },
+
+		fiftyFifty: {
+			type: BooleanType,
+			resolve: res => res.fiftyFifty,
+		},
   },
 });
 

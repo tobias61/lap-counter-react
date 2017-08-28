@@ -15,19 +15,15 @@ import {
   GraphQLInt as IntegerType,
   GraphQLNonNull,
 } from 'graphql';
+import CreateRunnerInputType, {RunnerInputFields} from "./CreateRunnerInputType";
+import {CreateSponsorInputTypeFields} from "./CreateSponsorInputType";
 
-export const RunnerInputFields = {
-	gender: { type: new GraphQLNonNull(StringType) },
-	firstName: { type: new GraphQLNonNull(StringType) },
-	lastName: { type: new GraphQLNonNull(StringType) },
-	email: { type: StringType },
-	number: { type: IntegerType },
-	sponsor_id: { type: ID },
-}
-
-const CreateRunnerInputType = new ObjectType({
-  name: 'RunnerInput',
-  fields: RunnerInputFields,
+const RunnerWithSponsorInput = new ObjectType({
+  name: 'RunnerWithSponsorInput',
+  fields: {
+    ...RunnerInputFields,
+    ...CreateSponsorInputTypeFields
+  },
 });
 
 export default CreateRunnerInputType;

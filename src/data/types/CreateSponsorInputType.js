@@ -13,19 +13,20 @@ import {
   GraphQLBoolean as BooleanType,
   GraphQLNonNull,
 } from 'graphql';
+export const CreateSponsorInputTypeFields = {
+	email: { type: StringType },
+	name: { type: new GraphQLNonNull(StringType) },
+	contact_firstName: { type: StringType },
+	contact_lastName: { type: StringType },
+	sponsor_amount: { type: StringType },
+	private: { type: BooleanType },
+	cash: { type: BooleanType },
+	donation_receipt: { type: BooleanType },
+};
 
 const CreateSponsorInputType = new ObjectType({
   name: 'SponsorInput',
-  fields: {
-    email: { type: StringType },
-    name: { type: new GraphQLNonNull(StringType) },
-    contact_firstName: { type: StringType },
-    contact_lastName: { type: StringType },
-    sponsor_amount: { type: StringType },
-    private: { type: BooleanType },
-    cash: { type: BooleanType },
-    donation_receipt: { type: BooleanType },
-  },
+  fields: CreateSponsorInputTypeFields,
 });
 
 export default CreateSponsorInputType;

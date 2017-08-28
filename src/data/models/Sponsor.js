@@ -51,6 +51,10 @@ const Sponsor = Model.define('Sponsor', {
     type: DataType.BOOLEAN,
   },
 
+	fiftyFifty: {
+		type: DataType.BOOLEAN,
+  },
+
 });
 
 export default Sponsor;
