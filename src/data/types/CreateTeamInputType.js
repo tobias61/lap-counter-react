@@ -18,6 +18,7 @@ const CreateTeamInputType = new ObjectType({
   name: 'TeamInput',
   fields: {
     name: { type: new GraphQLNonNull(StringType) },
+    sponsor_id: { type: StringType },
     sponsor_amount: { type: FloatType },
   },
 });
