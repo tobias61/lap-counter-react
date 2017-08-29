@@ -35,7 +35,8 @@ import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import config from './config';
 import { postCSVImport } from './data/import/import-request';
-import * as fileUpload from "express-fileupload";
+import * as fileUpload from 'express-fileupload';
+import generateQRCodes from './requests/generate-qrcodes';
 
 const app = express();
 
@@ -80,6 +81,7 @@ app.use(passport.initialize());
 if (__DEV__) {
   app.enable('trust proxy');
 }
+app.get('/generate-qrcodes', generateQRCodes);
 app.get(
   '/login/facebook',
   passport.authenticate('facebook', {
@@ -160,7 +162,7 @@ app.get('*', async (req, res, next) => {
       // https://github.com/kriasoft/isomorphic-style-loader
       insertCss: (...styles) => {
         // eslint-disable-next-line no-underscore-dangle
-        console.log(styles)
+        console.log(styles);
         styles.forEach(style => css.add(style._getCss()));
       },
       fetch,
