@@ -24,6 +24,9 @@ const runnerList = {
     if (query && query !== '') {
       return Runner.findAndCountAll({
         where: {
+          sponsor_id: {
+            $ne: null,
+          },
           $or: [
             {
               firstName: { $like: `%${query}%` },
@@ -38,7 +41,13 @@ const runnerList = {
         },
       }).then(resultCall);
     }
-    return Runner.findAndCountAll().then(resultCall);
+    return Runner.findAndCountAll({
+      where: {
+        sponsor_id: {
+          $ne: null,
+        },
+      },
+    }).then(resultCall);
   },
 };
 

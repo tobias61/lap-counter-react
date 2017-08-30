@@ -23,7 +23,12 @@ const Team = Model.define('Team', {
   },
 
   sponsor_amount: {
-    type: DataType.FLOAT,
+    type: DataType.STRING,
+  },
+
+  insert: {
+    type: DataType.DATE,
+    defaultValue: DataType.NOW,
   },
 
   sponsor_id: {

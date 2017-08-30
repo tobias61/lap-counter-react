@@ -34,12 +34,17 @@ const updatePersonalRunner = {
     ).reduce(reducer, {
       personal: true,
     });
-
-    return Runner.findById(id).then(foundRunner =>
-      Sponsor.update(sponsorValues, {
+    return Runner.findById(id).then(foundRunner => {
+      if (!foundRunner.sponsor_id) {
+        return Sponsor.create(sponsorValues).then(res => {
+          runnerValues.sponsor_id = res.id;
+          return foundRunner.update({ ...runnerValues });
+        });
+      }
+      return Sponsor.update(sponsorValues, {
         where: { id: foundRunner.sponsor_id },
-      }).then(res => foundRunner.update({ ...runnerValues })),
-    );
+      }).then(res => foundRunner.update({ ...runnerValues }));
+    });
   },
 };
 

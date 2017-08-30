@@ -17,6 +17,7 @@ import {
 } from 'graphql';
 import SponsorType from './SponsorType';
 import Sponsor from '../models/Sponsor';
+import Lap from '../models/Lap';
 
 const RunnerType = new ObjectType({
   name: 'Runner',
@@ -46,12 +47,26 @@ const RunnerType = new ObjectType({
       resolve: res => res.email,
     },
     sponsor_amount: {
-      type: FloatType,
+      type: StringType,
       resolve: res => res.sponsor_amount,
+    },
+    laps: {
+      type: IntegerType,
+      resolve: res => {
+        if (res.laps){
+          return res.laps
+        }
+        return Lap.count({ where: { runner_id: res.id } }).then(( count )=>count);
+      },
     },
     sponsor: {
       type: SponsorType,
-      resolve: res => Sponsor.findById(res.sponsor_id),
+      resolve: res => {
+        if (res.sponsor) {
+          return res.sponsor;
+        }
+        return Sponsor.findById(res.sponsor_id);
+      },
     },
     number: {
       type: IntegerType,

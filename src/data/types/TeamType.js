@@ -13,6 +13,8 @@ import {
   GraphQLString as StringType,
   GraphQLNonNull as NonNull,
 } from 'graphql';
+import SponsorType from './SponsorType';
+import Sponsor from './../models/Sponsor';
 
 const TeamType = new ObjectType({
   name: 'Team',
@@ -24,6 +26,10 @@ const TeamType = new ObjectType({
     name: {
       type: StringType,
       resolve: res => res.name,
+    },
+    sponsor: {
+      type: SponsorType,
+      resolve: res => Sponsor.findById(res.sponsor_id),
     },
   },
 });

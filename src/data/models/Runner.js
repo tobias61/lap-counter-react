@@ -48,7 +48,7 @@ const Runner = Model.define(
     },
 
     sponsor_amount: {
-      type: DataType.FLOAT,
+      type: DataType.STRING,
     },
 
     sponsor_name: {

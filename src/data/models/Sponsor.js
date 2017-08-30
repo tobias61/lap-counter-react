@@ -22,6 +22,11 @@ const Sponsor = Model.define('Sponsor', {
     validate: { isEmail: true }
   },
 
+  insert: {
+    type: DataType.DATE,
+    defaultValue: DataType.NOW,
+  },
+
   name: {
     type: DataType.STRING(255),
   },
@@ -35,7 +40,7 @@ const Sponsor = Model.define('Sponsor', {
   },
 
   sponsor_amount: {
-    type: DataType.FLOAT,
+    type: DataType.STRING,
   },
 
   personal: {

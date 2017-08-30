@@ -37,6 +37,7 @@ import config from './config';
 import { postCSVImport } from './data/import/import-request';
 import * as fileUpload from 'express-fileupload';
 import generateQRCodes from './requests/generate-qrcodes';
+import LapSimulator from "./simulator";
 
 const app = express();
 
@@ -81,6 +82,10 @@ app.use(passport.initialize());
 if (__DEV__) {
   app.enable('trust proxy');
 }
+
+// const simulator = new LapSimulator();
+// simulator.start();
+
 app.get('/generate-qrcodes', generateQRCodes);
 app.get(
   '/login/facebook',

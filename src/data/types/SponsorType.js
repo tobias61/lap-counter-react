@@ -40,7 +40,7 @@ const SponsorType = new ObjectType({
       resolve: res => res.contact_lastName,
     },
     sponsor_amount: {
-      type: FloatType,
+      type: StringType,
       resolve: res => res.sponsor_amount,
     },
     personal: {
