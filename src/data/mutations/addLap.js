@@ -22,11 +22,28 @@ const addLap = {
   resolve(root, { number }) {
     return Runner.findOne({ where: { number } }).then(res => {
       if (res) {
-        return Lap.create({
-          runner_id: res.id,
+        const before = new Date();
+        before.setSeconds(before.getSeconds() - 30);
+        return Lap.count({
+          where: {
+            runner_id: res.id,
+            insert: {
+              $gte: before,
+            },
+          },
+        }).then(count => {
+          if (count === 0) {
+            return Lap.create({
+              runner_id: res.id,
+            });
+          }
+          return {
+            runner_id: res.id,
+          };
         });
+      }else {
+        return new Error('Kein Läufer gefunden');
       }
-      return new Error('Kein Läufer gefunden');
     });
   },
 };

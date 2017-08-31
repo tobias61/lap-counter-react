@@ -39,8 +39,8 @@ const results = {
         Sponsor.contact_lastName as sponsor_contact_lastName,
         Sponsor.sponsor_amount as sponsor_sponsor_amount,
         Sponsor.donation_receipt as sponsor_donation_receipt
-FROM Runner LEFT JOIN Lap ON Runner.id = Lap.runner_id LEFT JOIN Sponsor ON Runner.sponsor_id = Sponsor.id
-WHERE age > ${minAge} and age < ${maxAge} and sponsor_id NOT NULL
+FROM Runner LEFT JOIN Lap ON Runner.id = Lap.runner_id INNER JOIN Sponsor ON Runner.sponsor_id = Sponsor.id 
+WHERE age >= ${minAge} and age <= ${maxAge}
 GROUP BY Runner.id
 ORDER BY -Laps`,
       )

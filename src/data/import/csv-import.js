@@ -31,7 +31,6 @@ class CSVImporter {
                   },
                 }).then(count => {
                   if (count === 0) {
-                    console.log(Object.keys(item));
                     Sponsor.create({
                       email: item['E-Mail'],
                       contact_firstName: item.Vorname,
@@ -103,6 +102,7 @@ class CSVImporter {
                           lastName: item.Name,
                           firstName: item.Vorname,
                           gender: item.Geschlecht,
+                          birthday: item[`Geburtsdatum`],
                           sponsor_id: sponsor.id,
                           insert: item.Submitted,
                         })
