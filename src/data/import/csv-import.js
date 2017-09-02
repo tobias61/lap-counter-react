@@ -4,6 +4,7 @@ import * as async from 'async';
 import Runner from '../models/Runner';
 import Sponsor from '../models/Sponsor';
 import Team from '../models/Team';
+import * as moment from 'moment';
 
 class CSVImporter {
   filePath;
@@ -56,7 +57,10 @@ class CSVImporter {
                                 lastName: item[`Name Läufer ${i}`],
                                 firstName: item[`Vorname Läufer ${i}`],
                                 gender: item[`Geschlecht Läufer ${i}`],
-                                birthday: item[`Geburtsdatum Läufer ${i}`],
+                                birthday: moment(
+                                  item[`Geburtsdatum Läufer ${i}`],
+                                  'YYYY-MM-DD',
+                                ).toDate(),
                                 team_id: team.id,
                                 insert: item.Submitted,
                               };
@@ -81,7 +85,7 @@ class CSVImporter {
                   }
                 });
               } else {
-                Sponsor.count({
+                Runner.count({
                   where: {
                     email: item['E-Mail'],
                     insert: item.Submitted,
@@ -102,7 +106,10 @@ class CSVImporter {
                           lastName: item.Name,
                           firstName: item.Vorname,
                           gender: item.Geschlecht,
-                          birthday: item[`Geburtsdatum`],
+                          birthday: moment(
+                            item[`Geburtsdatum`],
+                            'YYYY-MM-DD',
+                          ).toDate(),
                           sponsor_id: sponsor.id,
                           insert: item.Submitted,
                         })

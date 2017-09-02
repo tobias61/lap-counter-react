@@ -34,6 +34,10 @@ const updatePersonalRunner = {
     ).reduce(reducer, {
       personal: true,
     });
+    if (sponsorValues.sponsor_email){
+      sponsorValues.email = sponsorValues.sponsor_email;
+      delete sponsorValues.sponsor_email;
+    }
     return Runner.findById(id).then(foundRunner => {
       if (!foundRunner.sponsor_id) {
         return Sponsor.create(sponsorValues).then(res => {

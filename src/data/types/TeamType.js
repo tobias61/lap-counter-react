@@ -11,10 +11,14 @@ import {
   GraphQLObjectType as ObjectType,
   GraphQLID as ID,
   GraphQLString as StringType,
+  GraphQLInt as IntegerType,
+  GraphQLBoolean as BooleanType,
   GraphQLNonNull as NonNull,
 } from 'graphql';
 import SponsorType from './SponsorType';
 import Sponsor from './../models/Sponsor';
+import Lap from '../models/Lap';
+import sequelize from './../sequelize';
 
 const TeamType = new ObjectType({
   name: 'Team',
@@ -30,6 +34,28 @@ const TeamType = new ObjectType({
     sponsor: {
       type: SponsorType,
       resolve: res => Sponsor.findById(res.sponsor_id),
+    },
+    isSchool: {
+      type: BooleanType,
+      resolve: res => res.isSchool,
+    },
+    laps: {
+      type: IntegerType,
+      resolve: res => {
+        if (res.laps) {
+          return res.laps;
+        }
+        return sequelize
+          .query(
+            `SELECT count(*) as count FROM Lap LEFT JOIN Runner ON Lap.runner_id = Runner.id WHERE Runner.team_id = '${res.id}'`,
+          )
+          .then(results => {
+            if (results.length && results[0].length) {
+              return results[0][0]["count"];
+            }
+            return null;
+          });
+      },
     },
   },
 });

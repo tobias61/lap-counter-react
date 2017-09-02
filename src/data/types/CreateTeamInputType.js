@@ -11,6 +11,7 @@ import {
   GraphQLInputObjectType as ObjectType,
   GraphQLString as StringType,
   GraphQLFloat as FloatType,
+  GraphQLBoolean as BooleanType,
   GraphQLNonNull,
 } from 'graphql';
 
@@ -20,6 +21,7 @@ const CreateTeamInputType = new ObjectType({
     name: { type: new GraphQLNonNull(StringType) },
     sponsor_id: { type: StringType },
     sponsor_amount: { type: FloatType },
+    isSchool: { type: BooleanType },
   },
 });
 

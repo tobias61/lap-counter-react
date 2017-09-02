@@ -9,7 +9,7 @@
 
 import DataType from 'sequelize';
 import Model from '../sequelize';
-import Sponsor from "./Sponsor";
+import Sponsor from './Sponsor';
 
 const Team = Model.define('Team', {
   id: {
@@ -29,6 +29,10 @@ const Team = Model.define('Team', {
   insert: {
     type: DataType.DATE,
     defaultValue: DataType.NOW,
+  },
+
+  isSchool: {
+    type: DataType.BOOLEAN,
   },
 
   sponsor_id: {

@@ -24,7 +24,7 @@ const results = {
         Runner.id as id, 
         COUNT(Runner.id) as laps, 
         cast(strftime('%Y.%m%d', 'now') - strftime('%Y.%m%d', datetime(birthday, 'localtime')) as int) as age,  
-        datetime(birthday, 'localtime') as birthdate, 
+        datetime(birthday, 'localtime') as birthday, 
         firstName, 
         lastName, 
         Runner.email as email,
@@ -39,7 +39,7 @@ const results = {
         Sponsor.contact_lastName as sponsor_contact_lastName,
         Sponsor.sponsor_amount as sponsor_sponsor_amount,
         Sponsor.donation_receipt as sponsor_donation_receipt
-FROM Runner LEFT JOIN Lap ON Runner.id = Lap.runner_id INNER JOIN Sponsor ON Runner.sponsor_id = Sponsor.id 
+FROM Lap LEFT JOIN Runner ON Lap.runner_id = Runner.id INNER JOIN Sponsor ON Runner.sponsor_id = Sponsor.id 
 WHERE age >= ${minAge} and age <= ${maxAge}
 GROUP BY Runner.id
 ORDER BY -Laps`,

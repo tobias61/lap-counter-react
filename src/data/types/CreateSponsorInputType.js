@@ -15,13 +15,16 @@ import {
 } from 'graphql';
 export const CreateSponsorInputTypeFields = {
 	email: { type: StringType },
+  sponsor_email: { type: StringType },
 	name: { type: (StringType) },
 	contact_firstName: { type: StringType },
 	contact_lastName: { type: StringType },
+  contact_address: { type: StringType },
 	sponsor_amount: { type: StringType },
 	private: { type: BooleanType },
 	cash: { type: BooleanType },
 	donation_receipt: { type: BooleanType },
+  fiftyFifty: { type: BooleanType },
 };
 
 const CreateSponsorInputType = new ObjectType({

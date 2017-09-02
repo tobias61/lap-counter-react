@@ -39,6 +39,10 @@ const Sponsor = Model.define('Sponsor', {
     type: DataType.STRING(255),
   },
 
+  contact_address: {
+    type: DataType.STRING(255),
+  },
+
   sponsor_amount: {
     type: DataType.STRING,
   },

@@ -18,6 +18,7 @@ import {
 import SponsorType from './SponsorType';
 import Sponsor from '../models/Sponsor';
 import Lap from '../models/Lap';
+import * as moment from 'moment';
 
 const RunnerType = new ObjectType({
   name: 'Runner',
@@ -38,6 +39,13 @@ const RunnerType = new ObjectType({
       type: StringType,
       resolve: res => res.birthday,
     },
+    age: {
+      type: IntegerType,
+      resolve: res =>
+        Math.floor(
+          moment(new Date()).diff(moment(res.birthday), 'years', true),
+        ),
+    },
     gender: {
       type: StringType,
       resolve: res => res.gender,
@@ -53,10 +61,10 @@ const RunnerType = new ObjectType({
     laps: {
       type: IntegerType,
       resolve: res => {
-        if (res.laps){
-          return res.laps
+        if (res.laps) {
+          return res.laps;
         }
-        return Lap.count({ where: { runner_id: res.id } }).then(( count )=>count);
+        return Lap.count({ where: { runner_id: res.id } }).then(count => count);
       },
     },
     sponsor: {

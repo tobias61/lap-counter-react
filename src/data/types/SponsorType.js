@@ -39,6 +39,10 @@ const SponsorType = new ObjectType({
       type: StringType,
       resolve: res => res.contact_lastName,
     },
+    contact_address: {
+      type: StringType,
+      resolve: res => res.contact_address,
+    },
     sponsor_amount: {
       type: StringType,
       resolve: res => res.sponsor_amount,

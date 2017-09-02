@@ -30,6 +30,9 @@ const createPersonalRunner = {
     ).reduce(reducer, {
       personal: true,
     });
+    if (runner.sponsor_email){
+      sponsorValues.email = runner.sponsor_email;
+    }
     return Sponsor.create(sponsorValues).then(res =>
       Runner.create({ ...runnerValues, sponsor_id: res.id }),
     );

@@ -39,6 +39,7 @@ import removeRunnerFromTeam from "./mutations/removeRunnerFromTeam";
 import teamSponsor from "./queries/teamSponsor";
 import setTeamSponsor from "./mutations/setTeamSponsor";
 import personalResults from "./queries/personalResults";
+import teamResults from "./queries/teamResults";
 
 const schema = new Schema({
   query: new ObjectType({
@@ -57,6 +58,7 @@ const schema = new Schema({
       teamRunnerList,
       teamSponsor,
       personalResults,
+      teamResults,
     },
   }),
   mutation: new ObjectType({

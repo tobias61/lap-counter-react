@@ -82,9 +82,9 @@ app.use(passport.initialize());
 if (__DEV__) {
   app.enable('trust proxy');
 }
-
 // const simulator = new LapSimulator();
 // simulator.start();
+
 
 app.get('/generate-qrcodes', generateQRCodes);
 app.get(
