@@ -17,8 +17,9 @@ import {
 } from 'graphql';
 import SponsorType from './SponsorType';
 import Sponsor from './../models/Sponsor';
-import Lap from '../models/Lap';
 import sequelize from './../sequelize';
+import Lap from '../models/Lap';
+import Runner from '../models/Runner';
 
 const TeamType = new ObjectType({
   name: 'Team',
@@ -51,10 +52,19 @@ const TeamType = new ObjectType({
           )
           .then(results => {
             if (results.length && results[0].length) {
-              return results[0][0]["count"];
+              return results[0][0].count;
             }
             return null;
           });
+      },
+    },
+    team_size: {
+      type: IntegerType,
+      resolve: res => {
+        if (res.team_size) {
+          return res.team_size;
+        }
+        return Runner.count({ where: { team_id: res.id } });
       },
     },
   },

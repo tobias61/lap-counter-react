@@ -12,13 +12,16 @@ import {
   GraphQLID as ID,
   GraphQLString as StringType,
   GraphQLFloat as FloatType,
+  GraphQLList as ListType,
   GraphQLInt as IntegerType,
   GraphQLNonNull as NonNull,
 } from 'graphql';
 import SponsorType from './SponsorType';
 import Sponsor from '../models/Sponsor';
+import LapTimeType from './LapTimeType';
 import Lap from '../models/Lap';
 import * as moment from 'moment';
+import * as _ from 'lodash';
 
 const RunnerType = new ObjectType({
   name: 'Runner',
@@ -80,6 +83,28 @@ const RunnerType = new ObjectType({
       type: IntegerType,
       resolve: res => res.number,
     },
+    lapTimes: {
+      type: new ListType(LapTimeType),
+      resolve: (res)=>{
+          return Lap.findAll({ where: { runner_id: res.id }, order:[['insert', 'ASC']],}).then(list => {
+            const times = list.map((lap, index)=>{
+              if (index < list.length-1){
+                return {
+                  index: index+1,
+                  time: moment(list[index+1].insert).diff(moment(lap.insert))
+                }
+              }else {
+                return null;
+              }
+            }).filter(item => item && item.time !== 0);
+
+            return times;
+            // const sorted = _.sortBy(times, 'time');
+            // console.log(sorted);
+            // return _.first(sorted).time;
+          })
+      },
+    }
   },
 });
 

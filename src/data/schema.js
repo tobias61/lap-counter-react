@@ -40,6 +40,8 @@ import teamSponsor from "./queries/teamSponsor";
 import setTeamSponsor from "./mutations/setTeamSponsor";
 import personalResults from "./queries/personalResults";
 import teamResults from "./queries/teamResults";
+import allRunnerResults from "./queries/allRunnerResults";
+import schoolTeamResults from "./queries/schoolTeamResults";
 
 const schema = new Schema({
   query: new ObjectType({
@@ -59,6 +61,8 @@ const schema = new Schema({
       teamSponsor,
       personalResults,
       teamResults,
+      allRunnerResults,
+      schoolTeamResults,
     },
   }),
   mutation: new ObjectType({
